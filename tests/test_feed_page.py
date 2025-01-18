@@ -4,17 +4,12 @@ from page_objects.profile_page import ProfilePage
 from page_objects.home_page import HomePage
 import allure
 from conftest import *
-from fixtures import *
+from data import *
 
 
 class TestFeedPage:
     @allure.title("если кликнуть на заказ, откроется всплывающее окно с деталями")
-    def test_that_the_order_modal_window_is_visible(self, driver):
-        authorization_page = AuthorizationPage(driver)
-        authorization_page.opening_the_authorization_page()
-        authorization_page.entering_email_in_the_login_form(test_email)
-        authorization_page.entering_password_in_the_login_form(test_password)
-        authorization_page.click_on_the_login_button()
+    def test_that_the_order_modal_window_is_visible(self, driver, authorization):
         home_page = HomePage(driver)
         home_page.click_on_the_feed_orders()
         feed_page = FeedPage(driver)
@@ -22,12 +17,7 @@ class TestFeedPage:
         feed_page.checking_that_the_order_modal_window_is_visible()
 
     @allure.title('заказы пользователя из раздела «История заказов» отображаются на странице «Лента заказов»')
-    def test_registration_and_order_flow(self, driver, user_registration_and_delete):
-        authorization_page = AuthorizationPage(driver)
-        authorization_page.opening_the_authorization_page()
-        authorization_page.entering_email_in_the_login_form(new_email)
-        authorization_page.entering_password_in_the_login_form(test_password)
-        authorization_page.click_on_the_login_button()
+    def test_registration_and_order_flow(self, driver, user_registration_and_delete, authorization):
         home_page = HomePage(driver)
         home_page.move_bun()
         home_page.click_place_an_order()
@@ -44,12 +34,7 @@ class TestFeedPage:
         assert number3 == number2 == number1
 
     @allure.title("при создании нового заказа счётчик Выполнено за всё время увеличивается")
-    def test_completed_for_all_time_counter_increases(self, driver):
-        authorization_page = AuthorizationPage(driver)
-        authorization_page.opening_the_authorization_page()
-        authorization_page.entering_email_in_the_login_form(test_email)
-        authorization_page.entering_password_in_the_login_form(test_password)
-        authorization_page.click_on_the_login_button()
+    def test_completed_for_all_time_counter_increases(self, driver, authorization):
         home_page = HomePage(driver)
         home_page.click_on_the_feed_orders()
         feed_page = FeedPage(driver)
@@ -66,12 +51,7 @@ class TestFeedPage:
         assert number_after == number_before + 1
 
     @allure.title("при создании нового заказа счётчик Выполнено за сегодня увеличивается")
-    def test_completed_today_counter_increases(self, driver):
-        authorization_page = AuthorizationPage(driver)
-        authorization_page.opening_the_authorization_page()
-        authorization_page.entering_email_in_the_login_form(test_email)
-        authorization_page.entering_password_in_the_login_form(test_password)
-        authorization_page.click_on_the_login_button()
+    def test_completed_today_counter_increases(self, driver, authorization):
         home_page = HomePage(driver)
         home_page.click_on_the_feed_orders()
         feed_page = FeedPage(driver)
@@ -88,12 +68,7 @@ class TestFeedPage:
         assert number_after == number_before + 1
 
     @allure.title("после оформления заказа его номер появляется в разделе В работе")
-    def test_number_appears_in_the_in_progress_section(self, driver):
-        authorization_page = AuthorizationPage(driver)
-        authorization_page.opening_the_authorization_page()
-        authorization_page.entering_email_in_the_login_form(test_email)
-        authorization_page.entering_password_in_the_login_form(test_password)
-        authorization_page.click_on_the_login_button()
+    def test_number_appears_in_the_in_progress_section(self, driver, authorization):
         home_page = HomePage(driver)
         home_page.move_bun()
         home_page.click_place_an_order()

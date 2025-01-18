@@ -6,7 +6,7 @@ from locators import *
 
 
 class AuthorizationPage(BasePage):
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver) -> object:
         super().__init__(driver)
         self.authorization_url = 'https://stellarburgers.nomoreparties.site/login'
         self.home_url = 'https://stellarburgers.nomoreparties.site/'
