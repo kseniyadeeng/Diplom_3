@@ -48,9 +48,6 @@ class BasePage:
         actions = ActionChains(self.driver)
         actions.click_and_hold(bun_source).move_to_element(bun_target).release().perform()
 
-    def wait_sleep(self, seconds: int):
-        time.sleep(seconds)
-
     def get_number(self, by: By, value: str) -> int:
         element = self.wait.until(expected_conditions.visibility_of_element_located((by, value)))
         number = element.text

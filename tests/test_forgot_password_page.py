@@ -22,8 +22,7 @@ class TestForgotPasswordPage:
         forgot_password_page.assert_reset_password_url()
 
     @allure.title("клик по кнопке показать/скрыть пароль скрывает/показывает пароль")
-    def test_clicking_the_show_password_button_makes_the_field_active(self,
-                                                                      driver):  # сначала неправильно прочитала заданиe, сделала не тот тест)) но пусть будет
+    def test_clicking_the_show_password_button_makes_the_field_active(self, driver):
         forgot_password_page = ForgotPasswordPage(driver)
         forgot_password_page.opening_the_login_page()
         forgot_password_page.click_on_the_reset_password_button()
