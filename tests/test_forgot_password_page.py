@@ -1,7 +1,9 @@
+import Urls
 from page_objects.forgot_password_page import ForgotPasswordPage
 import allure
 from conftest import *
 from data import *
+from Urls import *
 
 
 class TestForgotPasswordPage:
@@ -30,8 +32,8 @@ class TestForgotPasswordPage:
         forgot_password_page.click_on_the_reset_password_button_on_the_recovery_page()
         forgot_password_page.entering_password_in_the_password_recovery(test_password)
         forgot_password_page.checking_that_the_hidden_password_is_visible()
-        forgot_password_page.click_on_the_eye_button()
 
+        assert forgot_password_page.click_on_the_eye_button()
     @allure.title("клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его")
     def test_the_recovery_form_is_active(self, driver):
         forgot_password_page = ForgotPasswordPage(driver)
@@ -41,5 +43,5 @@ class TestForgotPasswordPage:
         forgot_password_page.click_on_the_reset_password_button_on_the_recovery_page()
         forgot_password_page.entering_password_in_the_password_recovery(test_password)
         forgot_password_page.click_on_the_eye_button()
-        forgot_password_page.checking_that_the_recovery_form_is_active()
 
+        assert forgot_password_page.checking_that_the_recovery_form_is_active()

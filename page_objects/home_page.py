@@ -23,6 +23,9 @@ class HomePage(BasePage):
         self.order_number_on_the_order_modal_window = (By.XPATH, order_number_on_the_order_modal_window)
         self.text_your_order_has_begun_to_be_prepared = (By.XPATH, text_your_order_has_begun_to_be_prepared)
 
+    def wait_sleep(self, param):
+        pass
+
     @allure.step("Клик на кнопку личный кабинет")
     def click_on_the_personal_button(self):
         self.click(*self.personal_account_button)
@@ -91,3 +94,6 @@ class HomePage(BasePage):
     @allure.step("Получение номера заказа")
     def get_number_from_the_order_modal_window(self) -> int:
         return self.get_number(*self.order_number_on_the_order_modal_window)
+
+
+

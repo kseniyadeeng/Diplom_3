@@ -34,3 +34,4 @@ def authorization():
     authorization_page.entering_email_in_the_login_form(test_email)
     authorization_page.entering_password_in_the_login_form(test_password)
     authorization_page.click_on_the_login_button()
+
