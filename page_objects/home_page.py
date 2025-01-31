@@ -53,16 +53,16 @@ class HomePage(BasePage):
         self.click(*self.pink_bun)
 
     @allure.step("Проверка на то, что окно видимо")
-    def checking_that_the_window_is_visible(self):
-        self.wait_until_visible(*self.window_with_details)
+    def assert_checking_that_the_window_is_visible(self):
+        assert self.wait_until_visible(*self.window_with_details).is_displayed()
 
     @allure.step("Клик на крестик")
     def click_on_the_cross(self):
         self.click(*self.cross)
 
     @allure.step("Проверка на то, что окна нет")
-    def checking_that_the_window_is_not_visible(self):
-        self.wait_until_invisible(*self.window_with_details)
+    def assert_checking_that_the_window_is_not_visible(self):
+        self.assertFalse(*self.window_with_details).is_displayed()
 
     @allure.step("Перемещение булочки")
     def move_bun(self):
@@ -72,8 +72,8 @@ class HomePage(BasePage):
         self.drag_and_drop_bun(source_value, target_value)
 
     @allure.step("Проверка на то, что видна стоимость")
-    def checking_that_the_cost_is_visible(self):
-        self.wait_until_visible(*self.cost_of_two_buns)
+    def assert_checking_that_the_cost_is_visible(self):
+        assert self.wait_until_visible(*self.cost_of_two_buns).is_displayed()
 
     @allure.step("Клик на 'сделать заказ'")
     def click_place_an_order(self):

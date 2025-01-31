@@ -1,6 +1,8 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 import allure
+
+import locators
 from page_objects.base_page import BasePage
 from locators import *
 
@@ -53,9 +55,13 @@ class ForgotPasswordPage(BasePage):
         self.long_press(*self.eye_button, 1)
 
     @allure.step("Проверка на то, что пароль виден")
-    def checking_that_the_hidden_password_is_visible(self):
-        self.wait_until_visible(*self.password_recovery_input_field_hidden)
+    def assert_checking_that_the_hidden_password_is_visible(self):
+        assert self.wait_until_visible(*self.password_recovery_input_field_hidden).is_displayed()
 
-    @allure.step("Проверка на то, что форма подсвечивается")
+    @allure.step("Проверка на то, что форма активна")
     def checking_that_the_recovery_form_is_active(self):
         self.wait_until_visible(*self.active_password_entry_field_window_in_the_password_recovery_form)
+
+    @allure.step('Проверка на то, что форма видна')
+    def assert_checking_that_the_recovery_form_is_active(self):
+        assert self.wait_until_visible(*self.active_password_entry_field_window_in_the_password_recovery_form).is_displayed()

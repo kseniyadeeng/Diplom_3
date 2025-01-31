@@ -37,7 +37,7 @@ class TestHomePage:
         authorization_page.click_on_the_login_button()
         home_page = HomePage(driver)
         home_page.click_on_the_pink_bun()
-        assert home_page.checking_that_the_window_is_visible()
+        home_page.assert_checking_that_the_window_is_visible()
 
     @allure.title("всплывающее окно закрывается кликом по крестику")
     def test_window_close(self, driver):
@@ -49,7 +49,7 @@ class TestHomePage:
         home_page = HomePage(driver)
         home_page.click_on_the_pink_bun()
         home_page.click_on_the_cross()
-        assert home_page.checking_that_the_window_is_not_visible()
+        home_page.assert_checking_that_the_window_is_not_visible()
 
     @allure.title("при добавлении ингредиента в заказ, увеличивается каунтер данного ингредиента")
     def test_count_increase(self, driver):
@@ -60,7 +60,7 @@ class TestHomePage:
         authorization_page.click_on_the_login_button()
         home_page = HomePage(driver)
         home_page.move_bun()
-        assert home_page.checking_that_the_cost_is_visible()
+        home_page.assert_checking_that_the_cost_is_visible()
 
     @allure.title("залогиненный пользователь может оформить заказ")
     def test_create_an_order_login_user(self, driver):
@@ -72,4 +72,4 @@ class TestHomePage:
         home_page = HomePage(driver)
         home_page.move_bun()
         home_page.click_place_an_order()
-        assert home_page.checking_text_your_order_has_begun_to_be_prepared_is_visible()
+        assert home_page.checking_text_your_order_has_begun_to_be_prepared_is_visible().text == "Ваш заказ начали готовить"
